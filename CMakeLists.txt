@@ -1,0 +1,11 @@
+project(print_debug)
+add_library(debug_printf STATIC debug_printf.c)
+
+option(BUILD_EXAMPLES "Build debug printf examples" OFF)
+if(BUILD_EXAMPLES)
+  include_directories(${PROJECT_SOURCE_DIR})
+  add_executable(demo examples/demo.c examples/demo_main.c)
+  target_link_libraries(demo debug_printf)
+  add_executable(level_config_test examples/level_config_test.c examples/demo.c)
+  target_link_libraries(level_config_test debug_printf)
+endif(BUILD_EXAMPLES)
