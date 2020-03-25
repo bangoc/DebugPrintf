@@ -40,13 +40,15 @@ void printfLog(int level, const char *file, int line, const char *fmt, ...) {
     return;
   }
 
+  const char *filename = (strrchr(file, '/') ? strrchr(file, '/') + 1 : file);
+
   time_t t = time(NULL);
   struct tm *lt = localtime(&t);
   va_list args;
   char buffer[16];
   buffer[strftime(buffer, sizeof(buffer), "%H:%M:%S", lt)] = '\0';
   fprintf(stdout, "%s %-8s %s:%d: ", buffer, debug_printf_level_names[level],
-          file, line);
+          filename, line);
 
   va_start(args, fmt);
   vfprintf(stdout, fmt, args);
