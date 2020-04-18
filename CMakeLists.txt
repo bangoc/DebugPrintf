@@ -1,4 +1,4 @@
-project(print_debug)
+project(print_debug C)
 add_library(debug_printf STATIC debug_printf.c)
 
 option(BUILD_EXAMPLES "Build debug printf examples" OFF)
